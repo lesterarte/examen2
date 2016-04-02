@@ -37,7 +37,8 @@ Person List::getHead()
 
 void List::insert(int posicion, Person persona)
 {
-	Node* antes = head; 
+
+	
 
 }
 
@@ -45,23 +46,55 @@ Person List::at(int posicion)
 {
 	Node* temp = head; 
 	int cont=0;
-	while(cont != posicion)
+	if(size() >posicion)
 	{
-		temp = temp-> getNext();
-		cont++;  
+		if(posicion==0)
+		{
+			return head->getValue();
+		}
+		while(cont<posicion)
+		{
+			temp= temp->getNext();
+			cont++; 
+		}
+		return temp->getValue();
 	}
-
-	return temp ->getValue();
 }
 
 void List::erase(int posicion)
 {
-	
+	Node* temp = head;
+	Node* temp2 = head;  
+	Node* temp3 = head; 
+
+	if(posicion == 0 )
+	{
+		setHead(head->getNext()->getValue());
+	}
+	else
+	{
+		for(int i=0; i<posicion-1; i++)
+		{
+			temp = temp->getNext();
+		}
+
+		for(int i=0; i<posicion+1; i++)
+		{
+			temp2 = temp2->getNext();
+		}
+		for(int i=0; i<posicion; i++)
+		{
+			temp3 = temp3->getNext();
+		}
+
+		temp = temp2; 
+		delete[] temp3;		
+	}	
 }
 
 void List::concat(List* lista)
 {
-
+	
 }
 
 int List::find(Person persona)
